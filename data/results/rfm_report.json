@@ -1,0 +1,63 @@
+{
+  "analysis_date": "2025-12-28 02:31:48",
+  "total_customers": 2829,
+  "total_sales": 62197508.856,
+  "segment_distribution": {
+    "一般客户": {
+      "customer_count": 1226,
+      "percentage": 43.33686815129021,
+      "avg_amount": 18507.84,
+      "sales_contribution": 36.48
+    },
+    "需挽留客户": {
+      "customer_count": 557,
+      "percentage": 19.68893601979498,
+      "avg_amount": 12869.67,
+      "sales_contribution": 11.53
+    },
+    "重要保持客户": {
+      "customer_count": 537,
+      "percentage": 18.981972428419937,
+      "avg_amount": 27765.3,
+      "sales_contribution": 23.97
+    },
+    "高价值客户": {
+      "customer_count": 365,
+      "percentage": 12.902085542594557,
+      "avg_amount": 38696.35,
+      "sales_contribution": 22.71
+    },
+    "重要发展客户": {
+      "customer_count": 144,
+      "percentage": 5.090137857900318,
+      "avg_amount": 22946.87,
+      "sales_contribution": 5.31
+    }
+  },
+  "rfm_statistics": {
+    "R_mean": 3.0084835630965006,
+    "F_mean": 2.9186991869918697,
+    "M_mean": 2.9982325910215626,
+    "R_days_mean": 135.4217037822552,
+    "frequency_mean": 13.60197949805585,
+    "amount_mean": 21985.687117709436
+  },
+  "business_insights": [
+    "🎯 高价值客户: 365人，仅占客户总数的12.9%，但贡献了22.7%的销售额",
+    "⚠️ 需挽留客户: 557人，平均310天未购买，建议制定召回策略",
+    "📈 重要发展客户: 144人，消费潜力大，可重点培养",
+    "💰 客户价值等级分布:",
+    "  • 重要客户: 905人 (32.0%)",
+    "  • 普通客户: 865人 (30.6%)",
+    "  • VIP客户: 627人 (22.2%)",
+    "  • 低价值客户: 432人 (15.3%)",
+    "📊 平均RFM分数: R=3.0, F=2.9, M=3.0",
+    "🛒 平均购买行为: 频率13.6次，金额21,986元"
+  ],
+  "recommendations": [
+    "针对高价值客户：提供VIP服务，增加客户粘性",
+    "针对需挽留客户：制定召回计划，发送优惠券",
+    "针对重要发展客户：个性化推荐，提升购买频率",
+    "针对一般客户：培养消费习惯，提升客单价"
+  ]
+}

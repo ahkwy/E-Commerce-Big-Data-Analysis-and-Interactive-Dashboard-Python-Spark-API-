@@ -1,0 +1,23 @@
+# 基础库
+pandas>=1.5.0
+numpy>=1.24.0
+openpyxl>=3.1.0
+
+# 数据生成
+Faker>=18.0.0
+
+# 数据处理
+scikit-learn>=1.3.0
+
+# 可视化（后续使用）
+matplotlib>=3.7.0
+seaborn>=0.12.0
+plotly>=5.15.0
+dash>=2.11.0
+streamlit>=1.25.0
+
+# 文本处理
+textblob>=0.17.1
+
+# Spark相关
+pyspark>=3.5.0 
