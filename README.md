@@ -24,7 +24,7 @@ Java 8+（Spark需要）
 克隆项目
 
 bash
-git clone https://github.com/yourusername/ecommerce-analysis.git
+https://gitee.com/ahkwy/e-commerce-big-data.git
 cd ecommerce-analysis
 创建虚拟环境（推荐）
 
@@ -57,29 +57,49 @@ streamlit run src/visualization/simple_dashboard.py
 
 项目结构
 ecommerce-analysis/
-├── data/                        # 数据文件目录
-│   ├── raw/                    # 原始数据
-│   └── processed/              # 处理后的数据
-├── results/                    # 分析结果输出
-├── src/                        # 源代码
-│   ├── crawler/               # 数据生成模块
-│   │   ├── data_simulator.py  # 数据模拟器
-│   │   └── generate_sample_excel.py  # 示例数据生成
-│   ├── spark/                 # Spark分析模块
-│   │   ├── basic_analysis.py  # 基础分析
-│   │   ├── rfm_analysis.py    # RFM分析
-│   │   └── spark_test.py      # Spark测试
-│   ├── utils/                 # 工具函数
-│   │   └── data_preparation.py  # 数据预处理
-│   └── visualization/         # 可视化模块
-│       └── simple_dashboard.py  # Streamlit仪表板
-├── docs/                      # 项目文档
-├── outputs/                   # 输出文件（如图表、报告等）
-├── logs/                      # 运行日志
-├── requirements.txt           # Python依赖
-├── run_analysis.sh           # 一键运行脚本（Linux/macOS）
-├── run_analysis.bat          # 一键运行脚本（Windows）
-└── README.md                  # 项目说明
+├── data_provider/             # 数据提供和处理模块
+│   ├── const.py              # 常量定义（如地区、品类等）
+│   ├── data_factory.py       # 数据工厂类（生成和加载数据）
+│   ├── data_loader.py        # 电商数据集加载器
+│   └── data_analysis.py      # 基础数据分析工具
+├── models/                   # 分析模型定义
+│   ├── sales_analysis.py     # 销售分析模型
+│   └── rfm_model.py         # RFM客户价值模型
+├── exp/                      # 实验和分析执行模块
+│   ├── exp_basic.py          # 实验基类
+│   ├── exp_sales_analysis.py # 销售分析实验类
+│   └── exp_rfm_analysis.py   # RFM分析实验类
+├── utils/                    # 工具函数模块
+│   ├── metrics.py           # 评估指标（KPI计算）
+│   ├── print_args.py        # 参数打印函数
+│   ├── tools.py             # 通用工具函数
+│   └── spark_utils.py       # Spark工具函数
+├── visualization/           # 可视化模块
+│   ├── dashboard.py         # Streamlit仪表板主文件
+│   └── chart_generator.py   # 图表生成器
+├── data/                    # 数据存储目录
+│   ├── raw/                # 原始数据
+│   │   └── sales_data.xlsx # 原始销售数据
+│   └── processed/          # 处理后的数据
+│       └── sales_cleaned.csv # 清洗后的数据
+├── checkpoints/            # 模型保存目录（可选）
+├── results/                # 实验结果目录
+│   ├── kpis.csv           # KPI指标结果
+│   ├── yearly_trend.csv   # 年度趋势结果
+│   ├── region_analysis.csv # 地区分析结果
+│   ├── category_analysis.csv # 品类分析结果
+│   └── rfm_analysis.csv   # RFM分析结果
+├── test_results/          # 测试结果目录
+├── visual/                # 可视化结果目录
+│   └── dashboard_assets/  # 仪表板资源文件
+├── docs/                  # 项目文档
+├── logs/                  # 运行日志目录
+├── outputs/               # 输出文件目录
+├── main.py               # 项目主入口文件
+├── requirements.txt      # Python依赖文件
+├── run_analysis.sh      # 一键运行脚本（Linux/macOS）
+├── run_analysis.bat     # 一键运行脚本（Windows）
+└── README.md            # 项目说明文档
 核心功能模块
 1. 数据处理
 
