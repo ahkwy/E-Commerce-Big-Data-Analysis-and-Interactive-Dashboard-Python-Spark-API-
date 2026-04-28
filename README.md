@@ -1,341 +1,85 @@
-电商销售大数据分析项目
-基于Apache Spark的电商销售大数据分析系统，包含数据生成、处理、分析、可视化全流程。
+E‑Commerce Big Data Analysis | Python, Spark, API, Streamlit
+项目简介
 
-项目特点
-全流程覆盖：从数据生成到可视化展示的完整流程
+该项目是一个电商大数据分析系统，旨在通过 Apache Spark 和 Python 构建数据处理与分析管道，并使用 Streamlit 创建交互式仪表板，帮助业务用户实时查看电商数据分析结果。系统能够从多个数据源获取销售数据、进行清洗、转化并展示关键业务指标，如销售趋势、用户分群等。
 
-大数据处理：使用Spark处理15,000+条数据记录
+同时，项目使用 RESTful API 提供数据服务，确保系统能够与其他系统进行集成，支持自动化工作流。
 
-客户价值分析：RFM模型和客户分群
-
-交互式可视化：Streamlit动态仪表板
-
-完整文档：详细的使用说明和代码注释
-
+技术栈
+Python
+Apache Spark (分布式数据处理)
+Streamlit (交互式可视化)
+FastAPI (RESTful API 服务)
+Git (版本控制)
+Docker (容器化，提升部署效率)
+Unit Testing (单元测试)
+Logging (日志记录)
+功能特性
+数据清洗与处理：
+自动化数据清洗与转换，支持大规模电商销售数据处理。
+使用 Spark 提高处理性能，处理大量数据时不影响效率。
+数据分析与可视化：
+实现销售趋势分析、用户活跃度分析、商品分类数据分析等。
+通过 Streamlit 实现交互式分析界面，用户可以实时查看并与数据进行交互。
+RESTful API：
+使用 FastAPI 提供数据查询接口，支持跨系统数据集成。
+API 接口包括数据查询、分析结果获取、数据过滤等功能。
+性能优化与日志记录：
+通过 Spark 的分布式计算框架，优化数据处理过程，提升系统性能。
+配置系统日志记录，确保系统稳定运行并便于调试。
+自动化测试与持续集成：
+为关键功能编写单元测试，确保项目在修改后能够稳定运行。
+配置 CI/CD 管道，自动化测试和部署，提高开发效率。
 快速开始
 环境要求
-Python 3.8+
-
-Java 8+（Spark需要）
-
-8GB+ 内存
-
-安装步骤
-克隆项目
-
-bash
-https://gitee.com/ahkwy/e-commerce-big-data.git
-cd ecommerce-analysis
-创建虚拟环境（推荐）
-
-bash
-python -m venv venv
-
-# Windows:
-venv\Scripts\activate
-
-# macOS/Linux:
-source venv/bin/activate
+Python >= 3.7
+Apache Spark >= 3.x
+Docker (可选，方便部署)
+Git
 安装依赖
-
-bash
+克隆项目：
+git clone https://github.com/ahkwy/e-commerce-big-data.git
+cd e-commerce-big-data
+创建虚拟环境并激活：
+python3 -m venv venv
+source venv/bin/activate  # Mac/Linux
+venv\Scripts\activate     # Windows
+安装所需依赖：
 pip install -r requirements.txt
-运行一键分析脚本
-
-bash
-# Linux/macOS:
-chmod +x run_analysis.sh
-./run_analysis.sh
-
-# Windows:
-run_analysis.bat
-启动可视化仪表板
-
-bash
-streamlit run src/visualization/simple_dashboard.py
-然后在浏览器中访问：http://localhost:8501
-
+运行项目
+启动数据处理与分析服务：
+python app.py
+访问 Streamlit 仪表板：
+streamlit run dashboard.py
+访问 API：
+curl http://127.0.0.1:8000/api/v1/sales
 项目结构
-ecommerce-analysis/
-├── data_provider/             # 数据提供和处理模块
-│   ├── const.py              # 常量定义（如地区、品类等）
-│   ├── data_factory.py       # 数据工厂类（生成和加载数据）
-│   ├── data_loader.py        # 电商数据集加载器
-│   └── data_analysis.py      # 基础数据分析工具
-├── models/                   # 分析模型定义
-│   ├── sales_analysis.py     # 销售分析模型
-│   └── rfm_model.py         # RFM客户价值模型
-├── exp/                      # 实验和分析执行模块
-│   ├── exp_basic.py          # 实验基类
-│   ├── exp_sales_analysis.py # 销售分析实验类
-│   └── exp_rfm_analysis.py   # RFM分析实验类
-├── utils/                    # 工具函数模块
-│   ├── metrics.py           # 评估指标（KPI计算）
-│   ├── print_args.py        # 参数打印函数
-│   ├── tools.py             # 通用工具函数
-│   └── spark_utils.py       # Spark工具函数
-├── visualization/           # 可视化模块
-│   ├── dashboard.py         # Streamlit仪表板主文件
-│   └── chart_generator.py   # 图表生成器
-├── data/                    # 数据存储目录
-│   ├── raw/                # 原始数据
-│   │   └── sales_data.xlsx # 原始销售数据
-│   └── processed/          # 处理后的数据
-│       └── sales_cleaned.csv # 清洗后的数据
-├── checkpoints/            # 模型保存目录（可选）
-├── results/                # 实验结果目录
-│   ├── kpis.csv           # KPI指标结果
-│   ├── yearly_trend.csv   # 年度趋势结果
-│   ├── region_analysis.csv # 地区分析结果
-│   ├── category_analysis.csv # 品类分析结果
-│   └── rfm_analysis.csv   # RFM分析结果
-├── test_results/          # 测试结果目录
-├── visual/                # 可视化结果目录
-│   └── dashboard_assets/  # 仪表板资源文件
-├── docs/                  # 项目文档
-├── logs/                  # 运行日志目录
-├── outputs/               # 输出文件目录
-├── main.py               # 项目主入口文件
-├── requirements.txt      # Python依赖文件
-├── run_analysis.sh      # 一键运行脚本（Linux/macOS）
-├── run_analysis.bat     # 一键运行脚本（Windows）
-└── README.md            # 项目说明文档
-核心功能模块
-1. 数据处理
-
-数据预处理：清洗、转换、特征工程
-
-数据格式：支持CSV和Parquet格式
-
-2. Spark分析
-基础分析：销售趋势、地区分布、品类分析
-
-RFM分析：客户价值分群和评估
-
-性能优化：Spark并行计算，处理速度快
-
-3. 可视化展示
-交互式仪表板：Streamlit构建的实时仪表板
-
-多维度分析：销售、客户、产品、地区多维度可视化
-
-动态更新：支持数据筛选和实时刷新
-
-分析维度
-销售分析
-销售趋势（年/月）
-
-地区销售分布
-
-产品品类效益
-
-邮寄方式对比
-
-客户分析
-RFM客户价值模型
-
-客户分群（高价值、重要客户等）
-
-客户购买行为分析
-
-运营分析
-利润分析
-
-折扣策略评估
-
-风险订单识别
-
-使用指南
-1. 数据生成
-bash
-# 生成示例数据
-python src/crawler/generate_sample_excel.py
-
-# 生成扩展数据（15,000条）
-python src/crawler/data_simulator.py
-2. 数据处理
-bash
-# 数据预处理
-python src/utils/data_preparation.py
-3. Spark分析
-bash
-# 基础分析
-python src/spark/basic_analysis.py
-
-# RFM分析
-python src/spark/rfm_analysis.py
-4. 可视化
-bash
-# 启动仪表板
-streamlit run src/visualization/simple_dashboard.py
-技术栈
-数据处理：Apache Spark 3.5, Pandas, NumPy
-
-数据生成：Faker
-
-可视化：Streamlit, Plotly
-
-分析建模：RFM模型，统计分析
-
-开发环境：Python 3.8+, Jupyter（可选）
-
-学习成果
-通过本项目，您将掌握：
-
-大数据处理：使用Spark进行分布式计算
-
-数据分析：电商销售数据的多维度分析
-
-客户分析：RFM模型构建和应用
-
-数据可视化：交互式仪表板开发
-
-项目实践：完整的数据分析项目流程
-
-常见问题
-Q1: Spark内存不足
-解决方案：
-
-减少数据规模（修改data_simulator.py中的target_records）
-
-增加Spark内存配置
-
-Q2: 仪表板无法显示
-解决方案：
-
-检查端口8501是否被占用
-
-确保分析结果文件已生成
-
-Q3: 依赖安装失败
-解决方案：
-
-使用Python虚拟环境
-
-逐条安装依赖包
-
-许可证
-本项目仅供学习使用。
-
+e-commerce-big-data/
+├── app.py                    # 数据处理与分析核心逻辑
+├── dashboard.py              # Streamlit 仪表板
+├── api/
+│   ├── __init__.py
+│   └── sales_api.py          # FastAPI 数据接口
+├── data/
+│   ├── raw_data.csv          # 原始电商数据
+│   └── processed_data.csv    # 处理后的数据
+├── tests/                    # 单元测试
+│   ├── test_app.py
+│   └── test_api.py
+├── Dockerfile                # 容器化配置
+└── requirements.txt          # 项目依赖
+开发与贡献
+Fork 本仓库并克隆到本地。
+创建一个新分支（feature-branch）。
+在该分支上进行开发，确保所有功能通过单元测试。
+提交 Pull Request，描述所做的更改及其目的。
+未来发展方向
+添加更多的数据分析模型（如用户流失预测、销售预测等）。
+优化 API 接口，增加更多的数据处理功能。
+改进性能，支持更大规模的数据集。
+部署至云环境，提升系统的可用性和扩展性。
 联系方式
-项目作者：[您的姓名]
 
-课程名称：大数据分析与内存计算
-
-创建时间：2024年
-
-第五阶段：测试与验证
-步骤21：测试整个流程
-1. 运行完整流程测试
-bash
-# Linux/macOS
-chmod +x run_analysis.sh
-./run_analysis.sh
-
-# Windows
-run_analysis.bat
-2. 检查生成的文件
-bash
-# 检查数据文件
-ls -lh data/processed/
-
-# 检查分析结果
-ls -lh data/results/
-
-# 检查日志
-ls -lh logs/
-3. 手动运行各个模块测试
-bash
-# 测试数据生成
-python src/crawler/data_simulator.py
-
-# 测试数据处理
-python src/utils/data_preparation.py
-
-# 测试基础分析
-python src/spark/basic_analysis.py
-
-# 测试RFM分析
-python src/spark/rfm_analysis.py
-4. 测试可视化仪表板
-bash
-streamlit run src/visualization/simple_dashboard.py
-步骤22：创建测试报告
-测试环境
-操作系统：Windows 10 / macOS / Linux
-
-Python版本：3.8+
-
-内存：8GB+
-
-存储：10GB+可用空间
-
-测试结果
-1. 数据生成模块 ✅
-测试：生成15,000条销售记录
-
-结果：成功生成，文件大小约5MB
-
-时间：约30秒
-
-2. 数据处理模块 ✅
-测试：数据清洗和特征工程
-
-结果：成功处理，生成清洗后的数据
-
-时间：约10秒
-
-3. Spark分析模块 ✅
-测试：基础分析和RFM分析
-
-结果：成功生成所有分析结果
-
-时间：约2分钟
-
-4. 可视化模块 ✅
-测试：Streamlit仪表板
-
-结果：成功启动，所有图表正常显示
-
-时间：实时加载
-
-性能指标
-数据处理速度：1,500条/秒
-
-内存使用峰值：2GB
-
-总分析时间：<3分钟
-
-兼容性测试
-Python 3.8: ✅
-
-Python 3.9: ✅
-
-Python 3.10: ✅
-
-Windows: ✅
-
-macOS: ✅
-
-Linux: ✅
-
-问题与解决
-问题1：Spark内存不足
-解决方案：降低数据规模或增加内存配置
-
-问题2：依赖包冲突
-解决方案：使用虚拟环境隔离
-
-问题3：中文编码问题
-解决方案：使用utf-8-sig编码保存文件
-
-结论
-所有核心功能模块运行正常，满足项目要求。
-
-许可证
-本项目仅供学习使用。
-
-联系方式
-项目作者：[徐言昊]
-
-创建时间：2025年
+如果有任何问题或建议，请通过 GitHub issues
+ 提交，或者联系我：邮箱1608003988@qq.com
+。
