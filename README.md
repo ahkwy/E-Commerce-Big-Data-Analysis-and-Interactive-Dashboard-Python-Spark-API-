@@ -1,4 +1,4 @@
-E‑Commerce Big Data Analysis | Python, Spark, API, Streamlit
+E-Commerce Big Data Analysis | Python, Spark, API, Streamlit
 项目简介
 
 该项目是一个电商大数据分析系统，旨在通过 Apache Spark 和 Python 构建数据处理与分析管道，并使用 Streamlit 创建交互式仪表板，帮助业务用户实时查看电商数据分析结果。系统能够从多个数据源获取销售数据、进行清洗、转化并展示关键业务指标，如销售趋势、用户分群等。
@@ -81,5 +81,5 @@ Fork 本仓库并克隆到本地。
 联系方式
 
 如果有任何问题或建议，请通过 GitHub issues
- 提交，或者联系我：邮箱1608003988@qq.com
+ 提交，或者联系我：邮箱@example.com
 。
